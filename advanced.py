@@ -21,18 +21,21 @@ for instances in data:
     for variable in variables:
         if (variable['State']['Name']) == 'running':
             tags = (variable['Tags'])
-        else:
-            print("THIS EC2 INSTANCE IS NOT RUNNING : ")
-            instance_id = variable["InstanceId"]
-            li.append(instance_id)
             for tag in tags:
-                if tag['Value'] == 'Stage':
+                if tag['Value'] == 'Dev':
+                    # print(tag['Value'])
                     instance_id = variable["InstanceId"]
+                    # print(instance_id)
                     li.append(instance_id)
+                    print(len(li))
                 else:
-                    print("THIS EC2 IS RUNNING BUT DOES NOT HAVE THE RIGHT TAG")
+                    # print("THIS EC2 IS RUNNING BUT DOES NOT HAVE THE RIGHT TAG")
                     instance_id = variable["InstanceId"]
-                    li.append(instance_id)
+                    
+        else:
+            # print("THIS EC2 INSTANCE IS NOT RUNNING : ")
+            instance_id = variable["InstanceId"]
+           
 
-print(li)
-# print(ec2_client.terminate_instances(InstanceIds=li))
+# print(len(li))
+print(ec2_client.stop_instances(InstanceIds=li))
