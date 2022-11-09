@@ -11,9 +11,6 @@ import json
 ec2_client = boto3.client("ec2")
 x = ec2_client.describe_instances()
 data = (x['Reservations'])
-
-
-
 li = []
 # wondering f I can make that instance_id part into a function? so I can just resuse it, and it just returns something back to me? idk
 for instances in data:
@@ -29,11 +26,11 @@ for instances in data:
                     li.append(instance_id)
                     print(len(li))
                 else:
-                    # print("THIS EC2 IS RUNNING BUT DOES NOT HAVE THE RIGHT TAG")
+                    print("THIS EC2 IS RUNNING BUT DOES NOT HAVE THE RIGHT TAG")
                     instance_id = variable["InstanceId"]
                     
         else:
-            # print("THIS EC2 INSTANCE IS NOT RUNNING : ")
+            print("THIS EC2 INSTANCE IS NOT RUNNING : ")
             instance_id = variable["InstanceId"]
            
 
