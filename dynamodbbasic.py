@@ -7,8 +7,6 @@ import boto3
 import json
 
 dynamodb = boto3.resource('dynamodb',
-aws_access_key_id='AKIA6KQTPMSOH5YVMUUO',
-aws_secret_access_key='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',
 region_name='us-east-1')
 
 import boto3
